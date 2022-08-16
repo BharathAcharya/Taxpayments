@@ -1,0 +1,117 @@
+2022-08-16_22:55:58.638 [main] INFO  act.Act - loading application(s) ...
+2022-08-16_22:55:58.654 [main] INFO  act.app.App - App starting ....
+2022-08-16_22:55:59.001 [main] WARN  act.conf.AppConfig - ActFramework support compiling source code up to Java 8 only
+2022-08-16_22:55:59.048 [main] INFO  act.Act - Default port allocated for testing: 49813
+2022-08-16_22:55:59.126 [main] INFO  act.app.DbServiceManager - DB configuration not found. Will try to init default service with the sole db plugin: act.db.hibernate.HibernatePlugin@41962299
+2022-08-16_22:56:01.106 [jobs-thread-1] WARN  act.Act - No data source user configuration specified. Will use the default 'sa' user
+2022-08-16_22:56:01.106 [jobs-thread-1] WARN  act.Act - No database URL configuration specified. Will use the default h2 inmemory test database
+2022-08-16_22:56:01.106 [jobs-thread-1] WARN  act.Act - JDBC driver not configured, system automatically set to: org.h2.Driver
+2022-08-16_22:56:01.196 [main] INFO  act.xio.undertow.UndertowNetwork - Try clearing random server socket: 49813
+2022-08-16_22:56:01.249 [main] INFO  act.Act - network client hooked on port: 49813
+2022-08-16_22:56:01.249 [main] INFO  act.xio.undertow.UndertowNetwork - Try clearing random server socket: 49815
+2022-08-16_22:56:01.258 [main] INFO  act.Act - network client hooked on port: 49815
+2022-08-16_22:56:01.258 [main] INFO  act.xio.undertow.UndertowNetwork - Try clearing random server socket: 49816
+2022-08-16_22:56:01.260 [main] INFO  act.Act - network client hooked on port: 49816
+2022-08-16_22:56:01.260 [main] INFO  act.Act - CLI server started on port: 49814
+2022-08-16_22:56:01.579 [main] INFO  act.Act - app is ready in 4887ms at: http://192.168.137.1:49813
+
+
+2022-08-16_22:56:01.602 [jobs-thread-3] WARN  act.job.JobExceptionListenerManager - Job exception encountered on running job[post_di_load_init]
+java.lang.reflect.InaccessibleObjectException: Unable to make field int java.awt.Color.value accessible: module java.desktop does not "opens java.awt" to unnamed module @2df7766b
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:354)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:297)
+	at java.base/java.lang.reflect.Field.checkCanSetAccessible(Field.java:180)
+	at java.base/java.lang.reflect.Field.setAccessible(Field.java:174)
+	at org.osgl.Lang.addFieldsToList(Lang.java:8056)
+	at org.osgl.Lang.fieldsOf(Lang.java:7986)
+	at org.osgl.Lang.fieldsOf(Lang.java:7938)
+	at org.osgl.Lang.fieldOf(Lang.java:7876)
+	at org.osgl.Lang.fieldOf(Lang.java:7858)
+	at act.conf.AppConfig.captchaBgColor(AppConfig.java:461)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.osgl.Lang.invokeVirtual(Lang.java:8221)
+	at act.conf.AppConfig.preloadConfigurations(AppConfig.java:222)
+	at act.app.App$4.run(App.java:824)
+	at act.job.JobManager$ContextualJob$1.apply(JobManager.java:543)
+	at act.job.Job.doJob(Job.java:408)
+	at act.job.Job.run(Job.java:337)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-08-16_22:56:02.367 [jobs-thread-1] ERROR act.app.App - Block issue encountered
+org.osgl.exception.ConfigurationException: Error init SQL db service
+	at org.osgl.util.E.invalidConfiguration(E.java:330)
+	at act.db.sql.SqlDbService.init(SqlDbService.java:149)
+	at act.db.sql.SqlDbService$1.run(SqlDbService.java:76)
+	at act.job.Job$4.apply(Job.java:450)
+	at act.job.Job.doJob(Job.java:408)
+	at act.job.Job.run(Job.java:337)
+	at act.job.Job$LockableJobList$1.run(Job.java:109)
+	at act.job.JobManager$ContextualJob$1.apply(JobManager.java:543)
+	at act.job.Job.doJob(Job.java:408)
+	at act.job.Job.run(Job.java:337)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:953)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:883)
+	at act.db.hibernate.HibernateService.createEntityManagerFactory(HibernateService.java:83)
+	at act.db.jpa.JPAService.createEntityManagerFactory(JPAService.java:248)
+	at act.db.jpa.JPAService.dataSourceProvided(JPAService.java:72)
+	at act.db.hibernate.HibernateService.dataSourceProvided(HibernateService.java:77)
+	at act.db.sql.SqlDbService.doInitDataSource(SqlDbService.java:275)
+	at act.db.sql.SqlDbService.initDataSource(SqlDbService.java:257)
+	at act.db.sql.SqlDbService.init(SqlDbService.java:118)
+	... 14 common frames omitted
+Caused by: org.hibernate.MappingException: Could not get constructor for org.hibernate.persister.entity.SingleTableEntityPersister
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:123)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:77)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:356)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:423)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:880)
+	... 21 common frames omitted
+Caused by: org.hibernate.HibernateException: Unable to instantiate default tuplizer [org.hibernate.tuple.entity.PojoEntityTuplizer]
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:91)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:116)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:388)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:518)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:124)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.hibernate.persister.internal.PersisterFactoryImpl.createEntityPersister(PersisterFactoryImpl.java:96)
+	... 25 common frames omitted
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:79)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:88)
+	... 33 common frames omitted
+Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make protected final java.lang.Class java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain) throws java.lang.ClassFormatError accessible: module java.base does not "opens java.lang" to unnamed module @2df7766b
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:354)
+	at java.base/java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:297)
+	at java.base/java.lang.reflect.Method.checkCanSetAccessible(Method.java:200)
+	at java.base/java.lang.reflect.Method.setAccessible(Method.java:194)
+	at javassist.util.proxy.SecurityActions.setAccessible(SecurityActions.java:103)
+	at javassist.util.proxy.FactoryHelper.toClass2(FactoryHelper.java:181)
+	at javassist.util.proxy.FactoryHelper.toClass(FactoryHelper.java:164)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:507)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:492)
+	at javassist.util.proxy.ProxyFactory.createClass1(ProxyFactory.java:428)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:400)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:72)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:164)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:164)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:60)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	... 36 common frames omitted
+2022-08-16_22:56:02.367 [jobs-thread-1] WARN  act.job.JobExceptionListenerManager - Job exception encountered on running job[2CmLd6022OQr]
+act.boot.app.BlockIssueSignal: null
