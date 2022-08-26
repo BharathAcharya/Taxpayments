@@ -36,7 +36,7 @@
     -->
 
     <!-- uncomment to add lombok support
-    <act.lombok>/path/to/lombok.jar</act.lombok>
+    <act.lombok>/path/to/lombok.war</act.lombok>
     -->
   </properties>
 
